@@ -1,8 +1,25 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
+import { useDispatch } from 'react-redux'
+import authService from './appwrite/auth'
+import { login, logout } from './store/authSlice'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [loading, setLoading] = useState(true)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    authService.getCurrentUser()
+      .then((userData) =>
+        userData ?
+          dispatch(login({ userData }))
+          : dispatch(logout())
+      )
+      .catch((error) => console.log('getCurrentUser Error:', error))
+      .finally(() => setLoading(false))
+
+  }, [])
 
   return (
     <>
