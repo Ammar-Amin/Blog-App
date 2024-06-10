@@ -3,6 +3,8 @@ import './App.css'
 import { useDispatch } from 'react-redux'
 import authService from './appwrite/auth'
 import { login, logout } from './store/authSlice'
+import { Footer, Header } from './components'
+import { Outlet } from 'react-router-dom'
 
 function App() {
 
@@ -21,10 +23,17 @@ function App() {
 
   }, [])
 
-  return (
-    <>
-      <h1 className='text-8xl text-center text-white mt-10'>Blog App : Our Major Project</h1>
-    </>
+  return !loading ? (
+    <div className='min-h-screen flex flex-wrap content-between'>
+      <Header />
+      <main>
+        {/* <Outlet /> */}
+      </main>
+      <p className='w-full text-7xl text-center text-white my-10'>Blog App using React & Appwrite </p>
+      <Footer />
+    </div>
+  ) : (
+    <h1 className='text-8xl text-center text-white mt-10'>Loading...</h1>
   )
 }
 
