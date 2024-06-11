@@ -9,7 +9,7 @@ export default function Button({
     ...props
 }) {
     return (
-        <button className={`px-6 py-2 ${textColor} ${bgColor} rounded-lg hover:opacity-95 ${className}`} {...props}>
+        <button type={type} className={`px-6 py-2 ${textColor} ${bgColor} rounded-lg hover:opacity-95 ${className}`} {...props}>
             {text}
         </button>
     )
