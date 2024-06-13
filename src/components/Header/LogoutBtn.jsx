@@ -18,6 +18,6 @@ export default function LogoutBtn() {
 
   return (
     <button onClick={handleLogout}
-      className='px-6 py-2 rounded-full hover:bg-blue-200 duration-200 text-slate-200'>Logout</button>
+      className='hover:text-red-300 duration-200 text-slate-200'>Logout</button>
   )
 }

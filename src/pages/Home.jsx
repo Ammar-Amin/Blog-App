@@ -19,8 +19,11 @@ export default function Home() {
 
     if (allPosts.length === 0) {
         return (
-            <div className='text-white text-4xl text-center'>
-                Login to get Posts
+            <div className='w-full h-[400px] flex items-center p-5'>
+                <div className='text-center text-white'>
+                    <p className='font-semibold text-3xl md:text-6xl'>Blog App using React & Appwrite </p>
+                    <p className='mt-5 text-xl md:text-3xl text-red-400'>Login to see Posts </p>
+                </div>
             </div>
         )
     }
@@ -28,11 +31,11 @@ export default function Home() {
     return (
         <div className='w-full py-8'>
             <Container>
-                <div className='flex flex-wrap'>
+                <div className='flex flex-wrap gap-1'>
                     {
                         allPosts.length > 0 &&
                         allPosts.map((post) => (
-                            <div key={post.$id} className='p-2 w-1/4'>
+                            <div key={post.$id} className='p-2 w-[142px]'>
                                 {/* <PostCard post={post} /> */}
                                 {/* OR  */}
                                 <PostCard {...post} />

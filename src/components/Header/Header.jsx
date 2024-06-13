@@ -15,7 +15,7 @@ export default function Header() {
         {
             name: "Home",
             path: "/",
-            active: true,
+            active: !authStatus,
         },
         {
             name: "Signup",
@@ -40,13 +40,13 @@ export default function Header() {
     ]
 
     return (
-        <header className='w-full py-4 text-white text-4xl text-center border-b-2 border-slate-700'>
+        <header className='w-full py-4 text-white text-center border-b-2 border-slate-700'>
             <Container>
                 <nav className='flex'>
                     <Link to='/'>
                         <Logo />
                     </Link>
-                    <ul className='flex ml-auto'>
+                    <ul className='flex gap-2 md:text-ba md:gap-4 ml-auto'>
                         {
                             navItems.map(item => (
                                 item.active &&

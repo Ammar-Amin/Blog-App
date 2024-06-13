@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import postService from '../appwrite/post'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import fileService from '../appwrite/file'
+import { Button, Container } from '../components'
 
 export default function Post() {
 
@@ -40,31 +41,29 @@ export default function Post() {
     return post ? (
         <div className="py-8">
             <Container>
-                <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
+                <div className="w-full flex flex-col bg-slate-400 justify-center mb-4 relative border border-slate-600 rounded-xl">
                     <img
-                        src={fileService.getFilePreview(post.featuredImage)}
+                        src={fileService.getFilePreview(post.featuredImg)}
                         alt={post.title}
-                        className="rounded-xl"
+                        className="rounded-t-xl"
                     />
 
                     {isAuthor && (
-                        <div className="absolute right-6 top-6">
+                        <div className="absolute right-1 top-1 md:right-6 md:top-6">
                             <Link to={`/edit-post/${post.$id}`}>
-                                <Button bgColor="bg-green-500" className="mr-3">
-                                    Edit
-                                </Button>
+                                <Button text='Edit' bgColor="bg-green-500" className="mr-3" />
                             </Link>
-                            <Button bgColor="bg-red-500" onClick={deletePost}>
-                                Delete
-                            </Button>
+                            <Button text='Delete' bgColor="bg-red-500" onClick={deletePost} />
                         </div>
                     )}
-                </div>
-                <div className="w-full mb-6">
-                    <h1 className="text-2xl font-bold">{post.title}</h1>
-                </div>
-                <div className="browser-css">
-                    {post.content}
+                    <div className='px-2 my-4'>
+                        <div className="w-full">
+                            <h1 className="text-2xl font-bold">{post.title}</h1>
+                        </div>
+                        <div className="browser-css mt-2">
+                            {post.content}
+                        </div>
+                    </div>
                 </div>
             </Container>
         </div>

@@ -24,8 +24,9 @@ export default function AllPosts() {
                     {
                         allPosts.length > 0 &&
                         allPosts.map((post) => (
-                            <div key={post.$id} className='p-2 w-1/4'>
-                                <PostCard post={post} />
+                            <div key={post.$id} className='p-2 w-[300px]'>
+                                {/* <PostCard post={post} /> */}
+                                <PostCard {...post} />
                             </div>
                         ))
                     }

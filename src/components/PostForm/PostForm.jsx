@@ -63,18 +63,18 @@ export default function PostForm({ post }) {
     const autoSlugGeneration = useCallback((value) => {
         if (value && value.length > 0) {
 
-            // const slug = value.toLowerCase().replace(/ /g, '-')
-            // setValue('slug', slug)
-            // return slug
+            const slug = value.toLowerCase().replace(/ /g, '-')
+            setValue('slug', slug)
+            return slug
 
             // OR 
 
-            return value
-                .trim()
-                .toLowerCase()
-                .replace(/^[a-zA-Z\d\s]+/g, '-')
-        } else {
-            return ''
+            //     return value
+            //         .trim()
+            //         .toLowerCase()
+            //         .replace(/^[a-zA-Z\d\s]+/g, '-')
+            // } else {
+            //     return ''
         }
     }, [])
 
@@ -92,8 +92,8 @@ export default function PostForm({ post }) {
     }, [watch, autoSlugGeneration, setValue])
 
     return (
-        <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-            <div className="w-2/3 px-2">
+        <form onSubmit={handleSubmit(submit)} className="flex flex-wrap text-slate-200">
+            <div className="md:w-2/3 px-2">
                 <Input
                     label="Title :"
                     placeholder="Title"
@@ -111,7 +111,7 @@ export default function PostForm({ post }) {
                 />
                 <RealTImeEditor label="Content :" name="content" control={control} defaultValue={getValues("content")} />
             </div>
-            <div className="w-1/3 px-2">
+            <div className="mt-5 md:mt-0 md:w-1/3 px-2">
                 <Input
                     label="Featured Image :"
                     type="file"
@@ -131,12 +131,10 @@ export default function PostForm({ post }) {
                 <Select
                     options={["active", "inactive"]}
                     label="Status"
-                    className="mb-4"
+                    className="mb-5 md:mb-10"
                     {...register("status", { required: true })}
                 />
-                <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
-                    {post ? "Update" : "Submit"}
-                </Button>
+                <Button text={post ? "Update" : "Submit"} type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full" />
             </div>
         </form>
     )
