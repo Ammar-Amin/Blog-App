@@ -27,9 +27,8 @@ function App() {
     <div className='min-h-screen flex flex-wrap content-between'>
       <Header />
       <main>
-        {/* <Outlet /> */}
+        <Outlet />
       </main>
-      <p className='w-full text-7xl text-center text-white my-10'>Blog App using React & Appwrite </p>
       <Footer />
     </div>
   ) : (
