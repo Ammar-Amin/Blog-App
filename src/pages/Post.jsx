@@ -4,6 +4,7 @@ import postService from '../appwrite/post'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import fileService from '../appwrite/file'
 import { Button, Container } from '../components'
+import parse from 'html-react-parser'
 
 export default function Post() {
 
@@ -22,7 +23,6 @@ export default function Post() {
                 .catch(e => console.log("Post Page Error:", e))
         }
         else navigate('/')
-        console.log(post)
     }, [slug, navigate])
 
     const isAuthor = post && userData ? userData.$id === post.userId : false
@@ -61,7 +61,7 @@ export default function Post() {
                             <h1 className="text-2xl font-bold">{post.title}</h1>
                         </div>
                         <div className="browser-css mt-2">
-                            {post.content}
+                            {parse(post.content)}
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Input, Button, Select, RealTImeEditor } from '../index'
 import fileService from '../../appwrite/file'
 import postService from '../../appwrite/post'
@@ -10,6 +10,7 @@ export default function PostForm({ post }) {
 
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData)
+    const [loading, setLoading] = useState(false)
 
     const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
         defaultValues: {
@@ -21,6 +22,7 @@ export default function PostForm({ post }) {
     })
 
     const submit = async (data) => {
+        setLoading(true)
         if (post) {
             const file = data.image[0]
                 ? await fileService.uploadFile(data.image[0])
@@ -36,6 +38,7 @@ export default function PostForm({ post }) {
             })
 
             if (dbPost) {
+                setLoading(false)
                 navigate(`/post/${dbPost.$id}`)
             }
         }
@@ -53,6 +56,7 @@ export default function PostForm({ post }) {
                 })
 
                 if (dbPost) {
+                    setLoading(false)
                     navigate(`/post/${dbPost.$id}`)
                 }
             }
@@ -62,19 +66,9 @@ export default function PostForm({ post }) {
 
     const autoSlugGeneration = useCallback((value) => {
         if (value && value.length > 0) {
-
             const slug = value.toLowerCase().replace(/ /g, '-')
             setValue('slug', slug)
             return slug
-
-            // OR 
-
-            //     return value
-            //         .trim()
-            //         .toLowerCase()
-            //         .replace(/^[a-zA-Z\d\s]+/g, '-')
-            // } else {
-            //     return ''
         }
     }, [])
 
@@ -90,6 +84,16 @@ export default function PostForm({ post }) {
             subscription.unsubscribe()
         }
     }, [watch, autoSlugGeneration, setValue])
+
+    if (loading) {
+        return (
+            <div className='w-full h-[400px] flex items-center p-5'>
+                <div className='text-center text-white'>
+                    <p className='font-semibold text-2xl md:text-6xl'>Creating Your Post...</p>
+                </div>
+            </div>
+        )
+    }
 
     return (
         <form onSubmit={handleSubmit(submit)} className="flex flex-wrap text-slate-200">

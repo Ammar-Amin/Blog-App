@@ -1,28 +1,40 @@
 import React, { useEffect, useState } from 'react'
 import { Container, PostCard } from '../components'
 import postService from '../appwrite/post'
+import { useSelector } from 'react-redux'
 
 export default function Home() {
 
     const [allPosts, setAllPosts] = useState([])
+    const authStatus = useSelector(state => state.auth.status)
 
     useEffect(() => {
         postService.getPosts([])
             .then((posts) => {
                 if (posts) {
-                    console.log("All Posts", posts)
+                    // console.log("All Posts", posts)
                     setAllPosts(posts.documents)
                 }
             })
             .catch(e => console.log("Home page Error :: all Posts :", e))
     }, [])
 
-    if (allPosts.length === 0) {
+    if (!authStatus) {
         return (
             <div className='w-full h-[400px] flex items-center p-5'>
                 <div className='text-center text-white'>
                     <p className='font-semibold text-3xl md:text-6xl'>Blog App using React & Appwrite </p>
                     <p className='mt-5 text-xl md:text-3xl text-red-400'>Login to see Posts </p>
+                </div>
+            </div>
+        )
+    }
+
+    if (allPosts.length === 0) {
+        return (
+            <div className='w-full h-[400px] flex items-center p-5'>
+                <div className='text-center text-white'>
+                    <p className='font-semibold text-3xl md:text-6xl'>Loading Posts... </p>
                 </div>
             </div>
         )

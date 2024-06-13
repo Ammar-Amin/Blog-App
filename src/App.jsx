@@ -15,7 +15,7 @@ function App() {
     authService.getCurrentUser()
       .then((userData) =>
         userData ?
-          dispatch(login({ userData }))
+          dispatch(login(userData))
           : dispatch(logout())
       )
       .catch((error) => console.log('getCurrentUser Error:', error))
@@ -24,7 +24,7 @@ function App() {
   }, [])
 
   return !loading ? (
-    <div className='min-h-screen flex flex-wrap content-between'>
+    <div className='min-h-screen flex flex-col flex-wrap content-between'>
       <Header />
       <main className='mx-auto'>
         <Outlet />
