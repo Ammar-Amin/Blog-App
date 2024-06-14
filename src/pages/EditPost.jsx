@@ -6,12 +6,12 @@ import postService from '../appwrite/post'
 export default function EditPost() {
 
     const [postData, setPostData] = useState(null)
-    const { slugId } = useParams()
+    const { slug } = useParams()
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (slugId) {
-            postService.getPost(slugId)
+        if (slug) {
+            postService.getPost(slug)
                 .then((post) => {
                     if (post) {
                         setPostData(post)
@@ -21,7 +21,7 @@ export default function EditPost() {
         } else {
             navigate('/')
         }
-    }, [slugId, navigate])
+    }, [slug, navigate])
 
     return postData ? (
         <div>

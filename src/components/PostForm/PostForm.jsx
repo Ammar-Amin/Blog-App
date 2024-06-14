@@ -96,7 +96,7 @@ export default function PostForm({ post }) {
     }
 
     return (
-        <form onSubmit={handleSubmit(submit)} className="flex flex-wrap text-slate-200">
+        <form onSubmit={handleSubmit(submit)} className="flex flex-wrap text-slate-200 pb-5">
             <div className="md:w-2/3 px-2">
                 <Input
                     label="Title :"
@@ -126,7 +126,7 @@ export default function PostForm({ post }) {
                 {post && (
                     <div className="w-full mb-4">
                         <img
-                            src={fileService.getFilePreview(post.featuredImage)}
+                            src={fileService.getFilePreview(post.featuredImg)}
                             alt={post.title}
                             className="rounded-lg"
                         />
