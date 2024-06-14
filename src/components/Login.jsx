@@ -12,21 +12,43 @@ export default function Login() {
     const dispatch = useDispatch()
     const { register, handleSubmit } = useForm()
     const [error, setError] = useState('')
+    const [loading, setLoading] = useState(false)
 
     const handleLogin = async (data) => {
         setError('')
+        setLoading(true)
         try {
             const session = await authService.login(data)
             if (session) {
                 const userData = await authService.getCurrentUser()
                 if (userData) {
                     dispatch(storeLogin(userData))
+                    setLoading(false)
                     navigate('/')
                 }
             }
         } catch (error) {
             setError(error.message)
         }
+        setLoading(false)
+    }
+
+    if (loading) {
+        return (
+            <div className='w-full h-[400px] relative'>
+                <div class="banter-loader">
+                    <div class="banter-loader__box"></div>
+                    <div class="banter-loader__box"></div>
+                    <div class="banter-loader__box"></div>
+                    <div class="banter-loader__box"></div>
+                    <div class="banter-loader__box"></div>
+                    <div class="banter-loader__box"></div>
+                    <div class="banter-loader__box"></div>
+                    <div class="banter-loader__box"></div>
+                    <div class="banter-loader__box"></div>
+                </div>
+            </div>
+        )
     }
 
     return (

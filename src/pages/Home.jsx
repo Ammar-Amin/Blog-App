@@ -30,11 +30,19 @@ export default function Home() {
         )
     }
 
-    if (allPosts.length === 0) {
+    if (allPosts?.length === 0) {
         return (
-            <div className='w-full h-[400px] flex items-center p-5'>
-                <div className='text-center text-white'>
-                    <p className='font-semibold text-3xl md:text-6xl'>Loading Posts... </p>
+            <div className='w-full h-[400px] relative'>
+                <div class="banter-loader">
+                    <div class="banter-loader__box"></div>
+                    <div class="banter-loader__box"></div>
+                    <div class="banter-loader__box"></div>
+                    <div class="banter-loader__box"></div>
+                    <div class="banter-loader__box"></div>
+                    <div class="banter-loader__box"></div>
+                    <div class="banter-loader__box"></div>
+                    <div class="banter-loader__box"></div>
+                    <div class="banter-loader__box"></div>
                 </div>
             </div>
         )
@@ -45,8 +53,8 @@ export default function Home() {
             <Container>
                 <div className='flex flex-wrap gap-1'>
                     {
-                        allPosts.length > 0 &&
-                        allPosts.map((post) => (
+                        allPosts?.length > 0 &&
+                        allPosts?.map((post) => (
                             <div key={post.$id} className='p-2 w-[142px]'>
                                 {/* <PostCard post={post} /> */}
                                 {/* OR  */}

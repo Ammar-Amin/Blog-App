@@ -67,5 +67,19 @@ export default function Post() {
                 </div>
             </Container>
         </div>
-    ) : null;
+    ) : (
+        <div className='w-full h-[400px] relative'>
+            <div class="banter-loader">
+                <div class="banter-loader__box"></div>
+                <div class="banter-loader__box"></div>
+                <div class="banter-loader__box"></div>
+                <div class="banter-loader__box"></div>
+                <div class="banter-loader__box"></div>
+                <div class="banter-loader__box"></div>
+                <div class="banter-loader__box"></div>
+                <div class="banter-loader__box"></div>
+                <div class="banter-loader__box"></div>
+            </div>
+        </div>
+    );
 }

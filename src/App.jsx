@@ -32,7 +32,12 @@ function App() {
       <Footer />
     </div>
   ) : (
-    <h1 className='text-8xl text-center text-white mt-10'>Loading...</h1>
+    <div className='min-h-screen flex justify-center items-center'>
+      <div class="loader">
+        <span class="loader-text">Loading</span>
+        <span class="load"></span>
+      </div>
+    </div>
   )
 }
 

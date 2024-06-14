@@ -29,5 +29,10 @@ export default function EditPost() {
                 <PostForm post={postData} />
             </Container>
         </div>
-    ) : null
+    ) : (<div className='w-full h-[400px] flex justify-center items-center p-5'>
+        <div class="loader">
+            <span class="loader-text">Loading</span>
+            <span class="load"></span>
+        </div>
+    </div>)
 }

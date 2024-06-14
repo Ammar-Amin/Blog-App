@@ -15,7 +15,7 @@ export default function PostForm({ post }) {
     const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
         defaultValues: {
             title: post?.title || '',
-            slug: post?.slug || '',
+            slug: post?.$id || '',
             content: post?.content || '',
             status: post?.status || 'active',
         }
@@ -88,10 +88,13 @@ export default function PostForm({ post }) {
     if (loading) {
         return (
             <div className='w-full h-[400px] flex items-center p-5'>
-                <div className='text-center text-white'>
-                    <p className='font-semibold text-2xl md:text-6xl'>Creating Your Post...</p>
+                <div className='text-center text-white relative'>
+                    <p className='mb-2 md:mb-5 font-semibold text-2xl md:text-6xl'>{
+                        post ? 'Updating Your Post...' : 'Creating Your Post...'
+                    }</p>
+                    <div class="line"></div>
                 </div>
-            </div>
+            </div >
         )
     }
 

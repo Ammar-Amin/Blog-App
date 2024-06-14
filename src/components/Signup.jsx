@@ -12,21 +12,43 @@ export default function Signup() {
     const dispatch = useDispatch()
     const [error, setError] = useState('')
     const { register, handleSubmit } = useForm()
+    const [loading, setLoading] = useState(false)
 
     const handleSignup = async (data) => {
         setError('')
+        setLoading(true)
         try {
             const userData = await authService.createAccount(data)
             if (userData) {
                 const currUserData = await authService.getCurrentUser()
                 if (currUserData) {
                     dispatch(login(currUserData))
+                    setLoading(false)
                     navigate('/')
                 }
             }
         } catch (error) {
             setError(error.message)
         }
+        setLoading(false)
+    }
+
+    if (loading) {
+        return (
+            <div className='w-full h-[400px] relative'>
+                <div class="banter-loader">
+                    <div class="banter-loader__box"></div>
+                    <div class="banter-loader__box"></div>
+                    <div class="banter-loader__box"></div>
+                    <div class="banter-loader__box"></div>
+                    <div class="banter-loader__box"></div>
+                    <div class="banter-loader__box"></div>
+                    <div class="banter-loader__box"></div>
+                    <div class="banter-loader__box"></div>
+                    <div class="banter-loader__box"></div>
+                </div>
+            </div>
+        )
     }
 
     return (
