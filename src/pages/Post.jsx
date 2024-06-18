@@ -41,7 +41,7 @@ export default function Post() {
     return post ? (
         <div className="py-8">
             <Container>
-                <div className="w-full flex flex-col bg-slate-400 justify-center mb-4 relative border border-slate-600 rounded-xl">
+                <div className="w-full flex flex-col bg-slate-200 justify-center mb-4 relative border border-slate-600 rounded-xl">
                     <img
                         src={fileService.getFilePreview(post.featuredImg)}
                         alt={post.title}
@@ -51,12 +51,12 @@ export default function Post() {
                     {isAuthor && (
                         <div className="absolute right-1 top-1 md:right-6 md:top-6">
                             <Link to={`/edit-post/${post.$id}`}>
-                                <Button text='Edit' bgColor="bg-green-500" className="mr-3" />
+                                <Button text='Edit' bgColor="bg-green-500 " className="mr-3 text-xs py-1 md:py-2 md:text-base" />
                             </Link>
-                            <Button text='Delete' bgColor="bg-red-500" onClick={deletePost} />
+                            <Button text='Delete' bgColor="bg-red-500" className='text-xs py-1 md:py-2 md:text-base' onClick={deletePost} />
                         </div>
                     )}
-                    <div className='px-2 my-4'>
+                    <div className='px-4 lg:px-8 my-4 md:mb-8'>
                         <div className="w-full">
                             <h1 className="text-2xl font-bold">{post.title}</h1>
                         </div>

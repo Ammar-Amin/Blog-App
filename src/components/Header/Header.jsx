@@ -42,7 +42,7 @@ export default function Header() {
     return (
         <header className='w-full py-4 text-white text-center border-b-2 border-slate-700'>
             <Container>
-                <nav className='flex'>
+                <nav className='flex items-center'>
                     <Link to='/'>
                         <Logo />
                     </Link>
