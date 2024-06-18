@@ -19,6 +19,7 @@ export default function Signup() {
         setLoading(true)
         try {
             const userData = await authService.createAccount(data)
+            if (userData.success === false) { setError(userData.error) }
             if (userData) {
                 const currUserData = await authService.getCurrentUser()
                 if (currUserData) {
@@ -60,7 +61,7 @@ export default function Signup() {
                     </span>
                 </div>
                 <h2 className="text-center text-2xl font-bold leading-tight">Sign up to create account</h2>
-                {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+                {error && <p className="text-red-400 mt-5 text-center">{error}</p>}
                 <form onSubmit={handleSubmit(handleSignup)} className='mt-6 space-y-3'>
                     <Input
                         className="rounded-md"
