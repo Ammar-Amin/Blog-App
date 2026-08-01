@@ -2,33 +2,9 @@ import { Editor } from "@tinymce/tinymce-react";
 import { Controller } from "react-hook-form";
 import { useRef } from "react";
 
-// Import TinyMCE core + plugins + theme (self-hosted)
-import "tinymce/tinymce";
-import "tinymce/themes/silver";
-import "tinymce/icons/default";
-import "tinymce/plugins/lists";
-import "tinymce/plugins/link";
-import "tinymce/plugins/image";
-import "tinymce/plugins/code";
-import "tinymce/plugins/help";
-import "tinymce/plugins/wordcount";
-import "tinymce/plugins/autoresize";
-import "tinymce/plugins/media";
-import "tinymce/plugins/table";
-import "tinymce/plugins/emoticons";
-import "tinymce/plugins/emoticons/js/emojis";
-import "tinymce/plugins/searchreplace";
-import "tinymce/plugins/visualblocks";
-import "tinymce/plugins/preview";
-import "tinymce/plugins/charmap";
-import "tinymce/plugins/anchor";
-import "tinymce/plugins/pagebreak";
-import "tinymce/plugins/nonbreaking";
-import "tinymce/plugins/advlist";
-
-// Import TinyMCE skins (required for self-hosted)
-import "tinymce/skins/ui/oxide/skin.min.css";
-import "tinymce/skins/content/default/content.min.css";
+// TinyMCE is fully self-hosted from /public/tinymce (copied from the npm
+// package by scripts/copy-tinymce.js). No API key or CDN required — the GPL
+// license is declared via `license_key: "gpl"` below.
 
 export default function RTE({ name, control, label, defaultValue = "" }) {
   const editorRef = useRef(null);
@@ -47,20 +23,18 @@ export default function RTE({ name, control, label, defaultValue = "" }) {
         defaultValue={defaultValue}
         render={({ field: { onChange, value } }) => (
           <Editor
+            // Load the self-hosted core from /public/tinymce (no CDN, no key).
+            tinymceScriptSrc="/tinymce/tinymce.min.js"
             onInit={(evt, editor) => {
               editorRef.current = editor;
             }}
             value={value}
             onEditorChange={onChange}
             init={{
+              // Serve all skins, plugins and content CSS from the self-hosted copy.
               base_url: "/tinymce",
-              // No API key needed with GPL license
+              // No API key needed under the open-source GPL license.
               license_key: "gpl",
-              //  loads skins from CDN, core from npm
-              skin_url:
-                "https://cdn.tiny.cloud/1/no-api-key/tinymce/7/skins/ui/oxide",
-              content_css:
-                "https://cdn.tiny.cloud/1/no-api-key/tinymce/7/skins/content/default/content.min.css",
 
               height: 500,
               min_height: 300,
