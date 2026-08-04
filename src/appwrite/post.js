@@ -77,12 +77,14 @@ export class PostService {
         }
     }
 
-    async getPosts(queries = [Query.equal("status", "active")]) {
+    async getPosts(queries = []) {
         try {
             return await this.databases.listDocuments(
                 config.appwriteDatabaseId, // databaseId
                 config.appwriteCollectionId, // collectionId
-                queries, // queries
+                // listDocuments defaults to only 25 results; raise the limit and
+                // show newest posts first so seeded/new content is visible.
+                [Query.limit(100), Query.orderDesc("$createdAt"), ...queries],
             )
         } catch (error) {
             console.log("Appwrite service :: getPosts :: error :", error);
