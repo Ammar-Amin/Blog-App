@@ -17,7 +17,7 @@ export default function PostCard({ $id, title, featuredImg }) {
             {!loaded && <div className='absolute inset-0 animate-pulse bg-zinc-700' />}
 
             <img
-                src={fileService.getFilePreview(featuredImg)}
+                src={fileService.getFileView(featuredImg)}
                 alt={title}
                 loading='lazy'
                 onLoad={() => setLoaded(true)}

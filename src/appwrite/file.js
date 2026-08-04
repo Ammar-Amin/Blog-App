@@ -38,8 +38,10 @@ export class FileService {
         }
     }
 
-    getFilePreview(fileId) {
-        return this.storage.getFilePreview(
+    // Use getFileView (raw file) not getFilePreview: image transformations
+    // are a paid Appwrite Cloud feature and 403 on the free plan.
+    getFileView(fileId) {
+        return this.storage.getFileView(
             config.appwriteBucketId, // bucketId
             fileId // fileId
         )

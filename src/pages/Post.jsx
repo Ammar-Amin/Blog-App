@@ -43,7 +43,7 @@ export default function Post() {
             <Container>
                 <div className="w-full flex flex-col bg-slate-200 justify-center mb-4 relative border border-slate-600 rounded-xl">
                     <img
-                        src={fileService.getFilePreview(post.featuredImg)}
+                        src={fileService.getFileView(post.featuredImg)}
                         alt={post.title}
                         className="rounded-t-xl"
                     />
