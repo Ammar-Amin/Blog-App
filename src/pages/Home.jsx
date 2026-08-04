@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, PostCard } from '../components'
+import { Container, PostCard, MasonryGrid } from '../components'
 import postService from '../appwrite/post'
 import { useSelector } from 'react-redux'
 
@@ -51,18 +51,14 @@ export default function Home() {
     return (
         <div className='w-full py-8'>
             <Container>
-                <div className='flex flex-wrap gap-1'>
+                <MasonryGrid>
                     {
                         allPosts?.length > 0 &&
                         allPosts?.map((post) => (
-                            <div key={post.$id} className='p-2 w-[142px]'>
-                                {/* <PostCard post={post} /> */}
-                                {/* OR  */}
-                                <PostCard {...post} />
-                            </div>
+                            <PostCard key={post.$id} {...post} />
                         ))
                     }
-                </div>
+                </MasonryGrid>
             </Container>
         </div>
     )

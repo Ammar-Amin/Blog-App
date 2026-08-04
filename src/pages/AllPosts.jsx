@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import postService from '../appwrite/post'
-import { Container, PostCard } from '../components'
+import { Container, PostCard, MasonryGrid } from '../components'
 
 export default function AllPosts() {
 
@@ -38,17 +38,14 @@ export default function AllPosts() {
     return (
         <div className='w-full py-8'>
             <Container>
-                <div className='flex flex-wrap'>
+                <MasonryGrid>
                     {
                         allPosts?.length > 0 &&
                         allPosts?.map((post) => (
-                            <div key={post.$id} className='p-2 w-[300px]'>
-                                {/* <PostCard post={post} /> */}
-                                <PostCard {...post} />
-                            </div>
+                            <PostCard key={post.$id} {...post} />
                         ))
                     }
-                </div>
+                </MasonryGrid>
             </Container>
         </div>
     )

@@ -7,6 +7,7 @@ import Button from "./Button";
 import Input from "./Input";
 import Select from "./Select";
 import PostCard from "./PostCard";
+import MasonryGrid from "./MasonryGrid/MasonryGrid";
 import Login from "./Login";
 import Signup from "./Signup";
 import Protected from "./Protected";
@@ -14,5 +15,5 @@ import RealTImeEditor from "./RealTImeEditor";
 import PostForm from "./PostForm/PostForm";
 
 export {
-    Header, Footer, Container, Logo, LogoutBtn, Button, Input, Select, PostCard, Login, Signup, Protected, RealTImeEditor, PostForm,
+    Header, Footer, Container, Logo, LogoutBtn, Button, Input, Select, PostCard, MasonryGrid, Login, Signup, Protected, RealTImeEditor, PostForm,
 }
