@@ -71,17 +71,22 @@ export default function RTE({ name, control, label, defaultValue = "" }) {
 
               toolbar_mode: "sliding",
 
+              // Mirror the published article surface (zinc-800 + prose-invert)
+              // so authors compose in the same theme readers see.
               content_style: `
-                body { 
-                  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
-                  font-size: 16px; 
-                  line-height: 1.6; 
-                  color: #1f2937;
+                body {
+                  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #d1d5db;
+                  background: #27272a;
                   padding: 16px;
                 }
+                h1, h2, h3, h4, h5, h6 { color: #ffffff; }
+                a { color: #9A79FF; }
                 img { max-width: 100%; height: auto; border-radius: 8px; }
-                blockquote { border-left: 4px solid #e5e7eb; padding-left: 16px; margin-left: 0; color: #6b7280; }
-                pre { background: #f3f4f6; padding: 12px; border-radius: 6px; overflow-x: auto; }
+                blockquote { border-left: 4px solid #9A79FF; padding-left: 16px; margin-left: 0; color: #a1a1aa; }
+                pre { background: #18181b; padding: 12px; border-radius: 6px; overflow-x: auto; }
               `,
 
               // Image handling

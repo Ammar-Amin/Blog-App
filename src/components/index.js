@@ -13,7 +13,8 @@ import Signup from "./Signup";
 import Protected from "./Protected";
 import RealTImeEditor from "./RealTImeEditor";
 import PostForm from "./PostForm/PostForm";
+import Loader from "./Loader";
 
 export {
-    Header, Footer, Container, Logo, LogoutBtn, Button, Input, Select, PostCard, MasonryGrid, Login, Signup, Protected, RealTImeEditor, PostForm,
+    Header, Footer, Container, Logo, LogoutBtn, Button, Input, Select, PostCard, MasonryGrid, Login, Signup, Protected, RealTImeEditor, PostForm, Loader,
 }
